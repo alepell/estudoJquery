@@ -71,13 +71,21 @@ function inserePlacar(){
     let corpoTabela = $(".placar").find("tbody");
     let numPalavras = $("#contador-palavras").text();
     let usuario = "Alexandre";
+    let botaoRemover = "<a href='#'><i class='material-icons'>delete_forever</i></a>";
 
     let linha = "<tr>"+
                     "<td>"+ usuario + "</td>"+
                     "<td>"+ numPalavras + "</td>"+
+                    "<td>"+ botaoRemover + "</td>"+
                 "</tr>";
     corpoTabela.append(linha);            
 }
+
+$(".botao-remover").click((event)=>{
+    event.preventDefault();
+    $(this).parent().parent().remove();
+});
+
 
 function reiniciaJogo(){
     
