@@ -37,16 +37,21 @@ function inicializaCronometro(){
             tempoRestante --;
             $("#tempo-digitacao").text(tempoRestante);
             if(tempoRestante < 1){
-                campo.attr("disabled", true);
-                clearInterval(cronometroId)
-                campo.toggleClass("campo-desativado");
-                alert('Fim de jogo HAHAHA');
                 
+                clearInterval(cronometroId);
+                finalizaJogo();
             }
         },1000);
     
     });
 }
+
+function finalizaJogo(){
+    campo.attr("disabled", true);
+    campo.toggleClass("campo-desativado");
+    inserePlacar();
+}
+
 function inicializaMarcadores(){
     let frase = $(".frase").text();
     campo.on("input", () =>{
@@ -62,6 +67,17 @@ function inicializaMarcadores(){
     });
 }
 
+function inserePlacar(){
+    let corpoTabela = $(".placar").find("tbody");
+    let numPalavras = $("#contador-palavras").text();
+    let usuario = "Alexandre";
+
+    let linha = "<tr>"+
+                    "<td>"+ usuario + "</td>"+
+                    "<td>"+ numPalavras + "</td>"+
+                "</tr>";
+    corpoTabela.append(linha);            
+}
 
 function reiniciaJogo(){
     
@@ -76,3 +92,4 @@ function reiniciaJogo(){
         campo.removeClass("campo-correto");
         
 }
+
